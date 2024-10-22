@@ -10,7 +10,7 @@ public class HighScoreScreen extends World {
         highScores.put("Player3", 250);
         
         displayHighScores(highScores);
-        addObject(new Button(this::backToMenu), 400, 550); // Button to go back to Menu
+        addObject(new Button(this::backToMenu), 400, 550); 
     }
 
     private void displayHighScores(HashMap<String, Integer> scores) {

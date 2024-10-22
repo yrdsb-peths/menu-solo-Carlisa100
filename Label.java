@@ -1,18 +1,14 @@
-import greenfoot.*; 
+import greenfoot.*;
 
 public class Label extends Actor {
     private GreenfootImage image;
 
     public Label(String text) {
-        setImage(createImage(text));
-    }
-
-    private GreenfootImage createImage(String text) {
-        GreenfootImage img = new GreenfootImage(text, 24, Color.WHITE, new Color(0, 0, 0, 0));
-        return img;
+        setText(text);
     }
 
     public void setText(String text) {
-        setImage(createImage(text));
+        image = new GreenfootImage(text, 24, Color.WHITE, Color.BLACK);
+        setImage(image);
     }
 }

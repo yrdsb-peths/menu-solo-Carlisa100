@@ -2,25 +2,53 @@ import greenfoot.*;
 
 public class InstructionScreen extends World {
     private String[] instructions = {
-        "Instruction 1",
-        "Instruction 2",
-        "Instruction 3"
+        "Instruction 1: How to play the game.",
+        "Instruction 2: Use arrow keys to move.",
+        "Instruction 3: Collect items to score."
     };
     private int currentIndex = 0;
+    private Label instructionLabel;
+    private Button nextButton;
 
     public InstructionScreen() {
         super(600, 400, 1);
-        showInstruction();
-        addObject(new Button(this::nextInstruction), 300, 200);
+        instructionLabel = new Label(instructions[currentIndex]);
+        addObject(instructionLabel, 300, 200); 
+
+        addObject(new Button(this::previousInstruction), 100, 300); 
+        addObject(new Button(this::nextInstruction), 500, 300); 
     }
 
-    private void showInstruction() {
-        removeObjects(getObjects(Label.class));
-        addObject(new Label(instructions[currentIndex]), 400, 300);
+    private void previousInstruction() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateInstruction();
+        }
     }
 
     private void nextInstruction() {
-        currentIndex = (currentIndex + 1) % instructions.length;
-        showInstruction();
+        if (currentIndex < instructions.length - 1) {
+            currentIndex++;
+            updateInstruction();
+        }
+        else
+        {
+             goToAvatarSelection();
+        }
+    }
+
+    private void updateInstruction() {
+        instructionLabel.setText(instructions[currentIndex]);
+    }
+    
+    private void goToAvatarSelection() {
+        
+        removeObject(nextButton);
+        Button avatarButton = new Button(this::startAvatarSelection);
+        addObject(avatarButton, 300, 300); 
+    }
+
+    private void startAvatarSelection() {
+        Greenfoot.setWorld(new AvatarSelectionScreen()); 
     }
 }
