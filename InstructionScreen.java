@@ -9,9 +9,9 @@ public class InstructionScreen extends World {
     private int currentIndex = 0;
 
     public InstructionScreen() {
-        super(800, 600, 1);
+        super(600, 400, 1);
         showInstruction();
-        addObject(new Button(this::nextInstruction), 400, 550);
+        addObject(new Button(this::nextInstruction), 300, 200);
     }
 
     private void showInstruction() {
