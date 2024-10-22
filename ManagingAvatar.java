@@ -1,22 +1,22 @@
 import greenfoot.*;
 
 public class ManagingAvatar extends Actor {
-    private Queues avatarQueue;
     private String[] avatars = {"images/face_a.png", "images/face_b.png", "images/face_c.png"};
     private int currentAvatarIndex = 0;
+    private Avatar presentAvatar;
 
     public ManagingAvatar() {
-        
-        avatarQueue = new Queues();
-        for (String avatar : avatars) {
-            avatarQueue.enqueue(avatar);
-        }
-        showAvatar();
+
     }
 
     public void act() {
-        if (Greenfoot.mouseClicked(this)) {
+        if (Greenfoot.mouseClicked(this)) 
+        {
             nextAvatar();
+        }
+        
+        if (getWorld() != null) {
+            showAvatar();
         }
     }
 
@@ -25,7 +25,13 @@ public class ManagingAvatar extends Actor {
         showAvatar();
     }
 
-    private void showAvatar() {
-        setImage(avatars[currentAvatarIndex]);
+    private void showAvatar() 
+    {
+         if (presentAvatar != null) {
+            getWorld().removeObject(presentAvatar); 
+        }
+        
+        Avatar avatar = new Avatar(avatars[currentAvatarIndex]);
+        getWorld().addObject(avatar, 300, 200);
     }
 }
